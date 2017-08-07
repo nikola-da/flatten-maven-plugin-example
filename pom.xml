@@ -8,8 +8,39 @@
   <packaging>pom</packaging>
 
   <name>broken-flatten</name>
+
   <modules>
     <module>modulea</module>
     <module>moduleb</module>
   </modules>
+
+  <properties>
+    <modulea.version>0.1-SNAPSHOT</modulea.version>
+  </properties>
+
+  <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.4.1.Final</version>
+            </extension>
+        </extensions>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>co.knezevic</groupId>
+	<artifactId>modulea</artifactId>
+	<version>${modulea.version}</version>
+        <classifier>${os.detected.name}</classifier>
+      </dependency>
+      <dependency>
+        <groupId>co.knezevic</groupId>
+	<artifactId>moduleb</artifactId>
+	<version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>
